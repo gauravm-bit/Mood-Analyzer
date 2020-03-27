@@ -9,4 +9,11 @@ public class TestCases {
         String emotion= analyzerFactory.analyzeMood("I am sad");
         Assert.assertEquals("Sad",emotion);
     }
+
+    @Test
+    public void givenMessage_whenAnyMood_shouldReturn_sad(){
+        String emotion= analyzerFactory.analyzeMood("I am in any Mood");
+        Assert.assertEquals("Happy",emotion);
+    }
+
 }
