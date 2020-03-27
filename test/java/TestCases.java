@@ -2,18 +2,17 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestCases {
-    AnalyzerFactory analyzerFactory = new AnalyzerFactory();
 
     @Test
     public void givenMessage_whenSad_shouldReturn_sad(){
-        String emotion= analyzerFactory.analyzeMood("I am sad");
-        Assert.assertEquals("Sad",emotion);
+        MoodAnalyser moodAnalyser=new MoodAnalyser("I am in sad mood");
+        Assert.assertEquals("Sad",moodAnalyser.analyzeMood());
     }
 
     @Test
-    public void givenMessage_whenAnyMood_shouldReturn_sad(){
-        String emotion= analyzerFactory.analyzeMood("I am in any Mood");
-        Assert.assertEquals("Happy",emotion);
+    public void givenMessage_whenAnyMood_shouldReturn_Happy(){
+        MoodAnalyser moodAnalyser=new MoodAnalyser("I am in any mood");
+        Assert.assertEquals("Happy",moodAnalyser.analyzeMood());
     }
 
 }
