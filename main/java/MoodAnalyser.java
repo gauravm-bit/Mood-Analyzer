@@ -12,14 +12,14 @@ public class MoodAnalyser {
         this.message = message;
     }
 
-    public String analyzeMood() {
+    public String analyzeMood() throws MoodAnalysisException {
         try {
             if (message.contains("sad"))
                 return "Sad";
             else
                 return "Happy";
         } catch (NullPointerException e) {
-            return "Happy";
+            throw new MoodAnalysisException("Message should not be null",MoodAnalysisException.UserDefinedType.NULL_EXCEPTION);
         }
 
     }
