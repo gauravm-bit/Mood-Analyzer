@@ -1,4 +1,5 @@
 import java.lang.reflect.Constructor;
+import java.lang.reflect.Field;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 
@@ -41,6 +42,18 @@ public class MoodAnalysisFactory {
             throw new MoodAnalysisException("Method not found",MoodAnalysisException.UserDefinedType.NO_SUCH_METHOD);
         }
         return null;
+    }
+
+    public static void setFieldValue(Object moodObject,String fieldName,String fieldValue){
+        try {
+            Class<?> moodClass = moodObject.getClass();
+            Field declaredField = moodClass.getDeclaredField(fieldName);
+            declaredField.set(moodObject,fieldValue);
+        } catch (NoSuchFieldException e) {
+            e.printStackTrace();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
 }
