@@ -7,6 +7,8 @@ public class MoodAnalyser<analyseMood> {
         System.out.println("Welcome to MoodAnalyzer");
     }
 
+    public MoodAnalyser(){ }
+
     public MoodAnalyser(String message) {
         this.message = message;
     }

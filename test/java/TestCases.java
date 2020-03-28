@@ -2,30 +2,31 @@ import org.junit.Assert;
 import org.junit.Test;
 
 public class TestCases {
+    MoodAnalyser moodAnalyser;
 
     @Test
     public void givenMessage_whenSad_shouldReturn_sad() throws MoodAnalysisException {
-        MoodAnalyser moodAnalyser = new MoodAnalyser("I am in sad mood");
+        moodAnalyser = new MoodAnalyser("I am in sad mood");
         Assert.assertEquals("Sad", moodAnalyser.analyzeMood());
     }
 
     @Test
     public void givenMessage_whenAnyMood_shouldReturn_Happy() throws MoodAnalysisException {
-        MoodAnalyser moodAnalyser = new MoodAnalyser("I am in any mood");
+        moodAnalyser = new MoodAnalyser("I am in any mood");
         Assert.assertEquals("Happy", moodAnalyser.analyzeMood());
     }
 
     @Test
     public void givenMessage_whenNull_shouldReturn_Happy() throws MoodAnalysisException {
-        MoodAnalyser moodAnalyser = new MoodAnalyser(null);
+        moodAnalyser = new MoodAnalyser(null);
         Assert.assertEquals("Happy", moodAnalyser.analyzeMood());
     }
 
     @Test
     public void givenMessage_WhenNull_ThenShouldReturnNullException() {
         try {
-            MoodAnalyser moodAnalyzer = new MoodAnalyser(null);
-            moodAnalyzer.analyzeMood();
+            moodAnalyser = new MoodAnalyser(null);
+            moodAnalyser.analyzeMood();
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.NULL_EXCEPTION, e.userDefinedType);
         }
@@ -34,12 +35,22 @@ public class TestCases {
     @Test
     public void givenMessage_WhenEmpty_ThenShouldReturnEmptyException() {
         try {
-            MoodAnalyser moodAnalyzer = new MoodAnalyser("");
-            moodAnalyzer.analyzeMood();
+            moodAnalyser = new MoodAnalyser("");
+            moodAnalyser.analyzeMood();
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.EMPTY_EXCEPTION, e.userDefinedType);
         }
     }
+
+    @Test
+    public void givenObject_WhenEquals_ThenReturnTrue() {
+        moodAnalyser=new MoodAnalyser();
+        MoodAnalyser moodAnalyserObject = MoodAnalysisFactory.createMoodAnalyserObject();
+        boolean result = moodAnalyser.equals(moodAnalyserObject);
+        Assert.assertTrue("true",result);
+    }
+
+
 }
 
 
