@@ -1,6 +1,8 @@
 import org.junit.Assert;
 import org.junit.Test;
 
+import java.lang.reflect.Constructor;
+
 public class TestCases {
     MoodAnalyser moodAnalyser;
 
@@ -45,7 +47,8 @@ public class TestCases {
     @Test
     public void givenObject_WhenEquals_ThenReturnTrue() throws MoodAnalysisException{
         moodAnalyser=new MoodAnalyser();
-        MoodAnalyser moodAnalyserObject = MoodAnalysisFactory.createMoodAnalyserObject();
+        Constructor constructor=MoodAnalysisFactory.getConstructor("MoodAnalyser");
+        MoodAnalyser moodAnalyserObject = MoodAnalysisFactory.createMoodAnalyserObject(constructor);
         boolean result = moodAnalyser.equals(moodAnalyserObject);
         Assert.assertTrue("true",result);
     }
@@ -53,7 +56,7 @@ public class TestCases {
     @Test
     public void givenClass_WhenWrong_ThenShouldReturnClassNotFound() {
         try {
-            MoodAnalysisFactory.createMoodAnalyserObject();
+            MoodAnalysisFactory.getConstructor("MoodAnalyser");
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_CLASS,e.userDefinedType);
         }
@@ -62,7 +65,7 @@ public class TestCases {
     @Test
     public void givenMethod_WhenWrong_ThenShouldReturnNoSuchMethod() {
         try {
-            MoodAnalysisFactory.createMoodAnalyserObject();
+            MoodAnalysisFactory.getConstructor("MoodAnalyser");
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_METHOD,e.userDefinedType);
         }
