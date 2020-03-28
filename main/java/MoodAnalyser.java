@@ -30,7 +30,7 @@ public class MoodAnalyser<analyseMood> {
     public boolean equals(Object o) {
         if (this == o) return true;
         if (o == null || getClass() != o.getClass()) return false;
-        MoodAnalyser<?> that = (MoodAnalyser<?>) o;
+        MoodAnalyser that = (MoodAnalyser) o;
         return Objects.equals(message, that.message);
     }
 

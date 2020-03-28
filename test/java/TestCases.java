@@ -59,6 +59,16 @@ public class TestCases {
         }
     }
 
+    @Test
+    public void givenMethod_WhenWrong_ThenShouldReturnNoSuchMethod() {
+        try {
+            MoodAnalysisFactory.createMoodAnalyserObject();
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_METHOD,e.userDefinedType);
+        }
+    }
+
+
 
 }
 
