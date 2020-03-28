@@ -111,6 +111,18 @@ public class TestCases {
 
     }
 
+    @Test
+    public void givenHappyMessage_WithDefaultConstructor_ShouldReturnHappy() {
+        try {
+            Constructor moodConstructor = MoodAnalysisFactory.getConstructor("MoodAnalyzer");
+            MoodAnalyser moodAnalyzerObject = MoodAnalysisFactory.createMoodAnalyserObject(moodConstructor);
+            MoodAnalysisFactory.setFieldValue(moodAnalyzerObject, "message", "I am in happy mood");
+            Object mood = MoodAnalysisFactory.invokeMethod(moodAnalyzerObject, "analyzer");
+            Assert.assertEquals("Happy", mood);
+        } catch (MoodAnalysisException e) {
+            e.printStackTrace();
+        }
+    }
 }
 
 
