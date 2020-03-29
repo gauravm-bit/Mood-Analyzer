@@ -123,6 +123,17 @@ public class TestCases {
             e.printStackTrace();
         }
     }
+
+    @Test
+    public void givenFieldName_WithDefaultConstructorWhenImproper_ShouldThrowMoodAnalysisException(){
+        try {
+            Constructor moodConstructor = MoodAnalysisFactory.getConstructor("MoodAnalyser");
+            MoodAnalyser moodAnalyzerObject = MoodAnalysisFactory.createMoodAnalyserObject(moodConstructor);
+            MoodAnalysisFactory.setFieldValue(moodAnalyzerObject,"Message","I am in happy mood");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_FIELD,e.userDefinedType);
+        }
+    }
 }
 
 
