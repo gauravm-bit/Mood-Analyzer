@@ -4,6 +4,7 @@ public class MoodAnalysisException extends Exception{
         EMPTY_EXCEPTION,
         NO_SUCH_CLASS,
         NO_SUCH_METHOD,
+        NO_SUCH_FIELD
     }
 
     UserDefinedType userDefinedType;
