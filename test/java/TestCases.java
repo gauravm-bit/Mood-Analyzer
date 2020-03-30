@@ -13,7 +13,7 @@ public class TestCases {
     //TC 1.2
     @Test
     public void givenMessage_whenAnyMood_shouldReturn_Happy() throws MoodAnalysisException {
-        MoodAnalyser moodAnalyser = new MoodAnalyser("I am in any mood");
+        MoodAnalyser moodAnalyser = new MoodAnalyser("I am in happy mood");
         Assert.assertEquals("Happy", moodAnalyser.analyzeMood());
     }
 
