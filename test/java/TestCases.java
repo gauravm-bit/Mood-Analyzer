@@ -63,17 +63,17 @@ public class TestCases {
     @Test
     public void givenClass_WhenWrong_ThenShouldReturnClassNotFound() {
         try {
-            MoodAnalysisFactory.getConstructor("Measdsda");
+            MoodAnalysisFactory.getConstructor("MoodAnalyser");
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_CLASS,e.userDefinedType);
         }
     }
 
-    //4.3
+    //TC 4.3
     @Test
     public void givenMethod_WhenWrong_ThenShouldReturnNoSuchMethod() {
         try {
-            MoodAnalysisFactory.getConstructor("MoodAnalyser",Integer.class);
+            MoodAnalysisFactory.getConstructor("MoodAnalyser");
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_METHOD,e.userDefinedType);
         }
@@ -89,17 +89,17 @@ public class TestCases {
         Assert.assertTrue("true",result);
     }
 
-    //TC 5.2
+    //TC 6.1
     @Test
     public void givenClassNameWithParamConstructor_WhenWrong_ThenShouldReturnClassNotFound() {
         try {
-            MoodAnalysisFactory.getConstructor("Measdsda",String.class);
+            MoodAnalysisFactory.getConstructor("MoodAnalyzer",String.class);
         } catch (MoodAnalysisException e) {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_CLASS,e.userDefinedType);
         }
     }
 
-    //TC 5.3
+    //TC 6.2
     @Test
     public void givenParamConstructor_WhenWrong_ThenShouldReturnNoSuchMethod() {
         try {
@@ -109,11 +109,45 @@ public class TestCases {
         }
     }
 
+    //TC 7.1
+    @Test
+    public void givenHappyMessage_WhenProper_ShouldReturnHappy() {
+        try {
+            Constructor constructor = MoodAnalysisFactory.getConstructor("MoodAnalyser",String.class);
+            Object moodAnalyserObject = MoodAnalysisFactory.createMoodAnalyserObject(constructor,"I am in Happy mood");
+            Object mood = MoodAnalysisFactory.invokeMethod(moodAnalyserObject, "analyzer");
+            Assert.assertEquals("Happy",mood);
+        } catch (MoodAnalysisException e) {
+            e.printStackTrace();
+        }
 
+    }
 
+    //TC 7.2
+    @Test
+    public void givenHappyMessage_WithDefaultConstructor_ShouldReturnHappy() {
+        try {
+            Constructor moodConstructor = MoodAnalysisFactory.getConstructor("MoodAnalyzer");
+            MoodAnalyser moodAnalyzerObject = MoodAnalysisFactory.createMoodAnalyserObject(moodConstructor);
+            MoodAnalysisFactory.setFieldValue(moodAnalyzerObject, "message", "I am in happy mood");
+            Object mood = MoodAnalysisFactory.invokeMethod(moodAnalyzerObject, "analyzer");
+            Assert.assertEquals("Happy", mood);
+        } catch (MoodAnalysisException e) {
+            e.printStackTrace();
+        }
+    }
 
-
-
+    //TC 7.3
+    @Test
+    public void givenFieldName_WithDefaultConstructorWhenImproper_ShouldThrowMoodAnalysisException(){
+        try {
+            Constructor moodConstructor = MoodAnalysisFactory.getConstructor("MoodAnalyser");
+            MoodAnalyser moodAnalyzerObject = MoodAnalysisFactory.createMoodAnalyserObject(moodConstructor);
+            MoodAnalysisFactory.setFieldValue(moodAnalyzerObject,"Message","I am in happy mood");
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_FIELD,e.userDefinedType);
+        }
+    }
 }
 
 
