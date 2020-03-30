@@ -25,7 +25,7 @@ public class MoodAnalysisFactory {
         } catch (InvocationTargetException e) {
             throw new MoodAnalysisException(e.getMessage(),MoodAnalysisException.UserDefinedType.INVOCATION_TARGET_EXCEPTION);
         }
-        return null;
+
     }
 
     public static Object invokeMethod(Object moodAnalyserObject, String analyzer) throws MoodAnalysisException {
@@ -41,7 +41,7 @@ public class MoodAnalysisFactory {
         } catch (NoSuchMethodException e) {
             throw new MoodAnalysisException("Method not found",MoodAnalysisException.UserDefinedType.NO_SUCH_METHOD);
         }
-        return null;
+
     }
 
     public static void setFieldValue(Object moodObject,String fieldName,String fieldValue) throws MoodAnalysisException {

@@ -6,24 +6,28 @@ import java.lang.reflect.Constructor;
 public class TestCases {
     MoodAnalyser moodAnalyser;
 
+    //TC 1.1
     @Test
     public void givenMessage_whenSad_shouldReturn_sad() throws MoodAnalysisException {
         moodAnalyser = new MoodAnalyser("I am in sad mood");
         Assert.assertEquals("Sad", moodAnalyser.analyzeMood());
     }
 
+    //TC 1.2
     @Test
     public void givenMessage_whenAnyMood_shouldReturn_Happy() throws MoodAnalysisException {
         moodAnalyser = new MoodAnalyser("I am in any mood");
         Assert.assertEquals("Happy", moodAnalyser.analyzeMood());
     }
 
+    //TC 2.1
     @Test
     public void givenMessage_whenNull_shouldReturn_Happy() throws MoodAnalysisException {
         moodAnalyser = new MoodAnalyser(null);
         Assert.assertEquals("Happy", moodAnalyser.analyzeMood());
     }
 
+    //TC 3.1
     @Test
     public void givenMessage_WhenNull_ThenShouldReturnNullException() {
         try {
@@ -34,6 +38,7 @@ public class TestCases {
         }
     }
 
+    //TC 3.2
     @Test
     public void givenMessage_WhenEmpty_ThenShouldReturnEmptyException() {
         try {
@@ -44,6 +49,7 @@ public class TestCases {
         }
     }
 
+    //TC 4.1
     @Test
     public void givenObject_WhenEquals_ThenReturnTrue() throws MoodAnalysisException{
         moodAnalyser=new MoodAnalyser();
@@ -53,6 +59,7 @@ public class TestCases {
         Assert.assertTrue("true",result);
     }
 
+    //TC 4.2
     @Test
     public void givenClass_WhenWrong_ThenShouldReturnClassNotFound() {
         try {
@@ -62,6 +69,7 @@ public class TestCases {
         }
     }
 
+    //TC 4.3
     @Test
     public void givenMethod_WhenWrong_ThenShouldReturnNoSuchMethod() {
         try {
@@ -71,6 +79,7 @@ public class TestCases {
         }
     }
 
+    //TC 5.1
     @Test
     public void givenObject_WhenEqualsWithParamConstructor_ThenReturnTrue() throws MoodAnalysisException {
         moodAnalyser=new MoodAnalyser("Hello");
@@ -80,6 +89,7 @@ public class TestCases {
         Assert.assertTrue("true",result);
     }
 
+    //TC 6.1
     @Test
     public void givenClassNameWithParamConstructor_WhenWrong_ThenShouldReturnClassNotFound() {
         try {
@@ -89,6 +99,7 @@ public class TestCases {
         }
     }
 
+    //TC 6.2
     @Test
     public void givenParamConstructor_WhenWrong_ThenShouldReturnNoSuchMethod() {
         try {
@@ -98,6 +109,7 @@ public class TestCases {
         }
     }
 
+    //TC 7.1
     @Test
     public void givenHappyMessage_WhenProper_ShouldReturnHappy() {
         try {
@@ -111,6 +123,7 @@ public class TestCases {
 
     }
 
+    //TC 7.2
     @Test
     public void givenHappyMessage_WithDefaultConstructor_ShouldReturnHappy() {
         try {
@@ -124,6 +137,7 @@ public class TestCases {
         }
     }
 
+    //TC 7.3
     @Test
     public void givenFieldName_WithDefaultConstructorWhenImproper_ShouldThrowMoodAnalysisException(){
         try {
