@@ -16,7 +16,7 @@ public class TestCases {
     //TC 1.2
     @Test
     public void givenMessage_whenAnyMood_shouldReturn_Happy() throws MoodAnalysisException {
-        moodAnalyser = new MoodAnalyser("I am in happy mood");
+        moodAnalyser = new MoodAnalyser("I am in any mood");
         Assert.assertEquals("Happy", moodAnalyser.analyzeMood());
     }
 
@@ -59,7 +59,7 @@ public class TestCases {
         Assert.assertTrue("true",result);
     }
 
-    // 4.2
+    //TC 4.2
     @Test
     public void givenClass_WhenWrong_ThenShouldReturnClassNotFound() {
         try {
@@ -69,7 +69,7 @@ public class TestCases {
         }
     }
 
-    // 4.3
+    //4.3
     @Test
     public void givenMethod_WhenWrong_ThenShouldReturnNoSuchMethod() {
         try {
@@ -78,6 +78,39 @@ public class TestCases {
             Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_METHOD,e.userDefinedType);
         }
     }
+
+    //TC 5.1
+    @Test
+    public void givenObject_WhenEqualsWithParamConstructor_ThenReturnTrue() throws MoodAnalysisException {
+        moodAnalyser=new MoodAnalyser("Hello");
+        Constructor constructor=MoodAnalysisFactory.getConstructor("MoodAnalyser",String.class);
+        MoodAnalyser moodAnalyserObject = MoodAnalysisFactory.createMoodAnalyserObject(constructor,"Hello");
+        boolean result=moodAnalyser.equals(moodAnalyserObject);
+        Assert.assertTrue("true",result);
+    }
+
+    //TC 5.2
+    @Test
+    public void givenClassNameWithParamConstructor_WhenWrong_ThenShouldReturnClassNotFound() {
+        try {
+            MoodAnalysisFactory.getConstructor("Measdsda",String.class);
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_CLASS,e.userDefinedType);
+        }
+    }
+
+    //TC 5.3
+    @Test
+    public void givenParamConstructor_WhenWrong_ThenShouldReturnNoSuchMethod() {
+        try {
+            MoodAnalysisFactory.getConstructor("MoodAnalyser",String.class,Integer.class);
+        } catch (MoodAnalysisException e) {
+            Assert.assertEquals(MoodAnalysisException.UserDefinedType.NO_SUCH_METHOD,e.userDefinedType);
+        }
+    }
+
+
+
 
 
 
